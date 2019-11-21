@@ -1,4 +1,4 @@
-package io.github.peerapongsam.androidcodesorter.sortstratregy
+package io.github.peerapongsam.androidcodesorter.declaration
 
 import org.jetbrains.kotlin.psi.KtDeclaration
 
@@ -8,7 +8,7 @@ import org.jetbrains.kotlin.psi.KtDeclaration
  * internal
  * private
  */
-class FunctionsSortStrategy(private val declarations: MutableList<KtDeclaration>) : SortStrategy {
+class FunctionsDeclarationSort(private val declarations: MutableList<KtDeclaration>) : DeclarationSort {
 
     companion object {
         private const val ON_ATTACH = "onAttach"
@@ -46,9 +46,11 @@ class FunctionsSortStrategy(private val declarations: MutableList<KtDeclaration>
 
     override fun sort(): List<KtDeclaration> {
         val functions = mutableListOf<KtDeclaration>()
+        val sortEventBus = sortEventBus()
         functions.addAll(sortLifecycle())
         functions.addAll(sortOverride())
-        functions.addAll(ModifierSortStrategy(declarations).sort())
+        functions.addAll(ModifierDeclarationSort(declarations).sort())
+        functions.addAll(sortEventBus)
         return functions
     }
 
@@ -66,6 +68,12 @@ class FunctionsSortStrategy(private val declarations: MutableList<KtDeclaration>
 
     private fun sortOverride(): List<KtDeclaration> {
         val functions = declarations.filter { it.text.startsWith("override") }
+        declarations.removeAll(functions)
+        return functions.sortedBy { it.name }
+    }
+
+    private fun sortEventBus(): List<KtDeclaration> {
+        val functions = declarations.filter { it.text.contains("@Subscribe") }
         declarations.removeAll(functions)
         return functions.sortedBy { it.name }
     }

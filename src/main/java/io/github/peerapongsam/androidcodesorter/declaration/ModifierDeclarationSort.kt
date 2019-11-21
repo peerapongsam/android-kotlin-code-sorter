@@ -1,9 +1,9 @@
-package io.github.peerapongsam.androidcodesorter.sortstratregy
+package io.github.peerapongsam.androidcodesorter.declaration
 
 import org.jetbrains.kotlin.psi.KtDeclaration
 import org.jetbrains.kotlin.psi.psiUtil.visibilityModifierType
 
-class ModifierSortStrategy(private val declarations: MutableList<KtDeclaration>) : SortStrategy {
+class ModifierDeclarationSort(private val declarations: MutableList<KtDeclaration>) : DeclarationSort {
     override fun sort(): List<KtDeclaration> {
         val properties = mutableListOf<KtDeclaration>()
         properties.addAll(sortPublic())

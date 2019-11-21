@@ -3,7 +3,17 @@
     <name>Android Code Sorter</name>
     <vendor email="peerapong_sam@hotmail.com" url="https://peerapongsam.github.io">GitHub page</vendor>
 
-    <description><![CDATA[Plugin for sort android code followed by trueid team convention]]></description>
+    <description><![CDATA[
+    <em>Android Code Sorter</em>
+    Plugin for sort android code
+    followed by
+    companion object
+    val
+    var
+    lateinit var
+    val by factviewModel
+    val by lazy
+    ]]></description>
 
     <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
          on how to target different products -->

@@ -2,7 +2,7 @@ package io.github.peerapongsam.androidcodesorter.sortstratregy
 
 import org.jetbrains.kotlin.psi.*
 
-class CommonSortStrategy(declarations: List<out KtDeclaration>) : BaseSortStrategy(declarations) {
+class CommonSortStrategy(declarations: List<KtDeclaration>) : BaseSortStrategy(declarations) {
 
     init {
         ordering = getDefaultOrdering()
