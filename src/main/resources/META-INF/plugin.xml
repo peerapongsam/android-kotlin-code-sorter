@@ -1,0 +1,32 @@
+<idea-plugin>
+    <id>io.github.peerapongsam.AndroidCodeSorter</id>
+    <name>Android Code Sorter</name>
+    <vendor email="peerapong_sam@hotmail.com" url="https://peerapongsam.github.io">GitHub page</vendor>
+
+    <description><![CDATA[Plugin for sort android code followed by trueid team convention]]></description>
+
+    <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+         on how to target different products -->
+    <!-- uncomment to enable plugin in all products
+    <depends>com.intellij.modules.lang</depends>
+    -->
+    <idea-version since-build="171"/>
+    <depends>org.jetbrains.kotlin</depends>
+    <extensions defaultExtensionNs="com.intellij">
+        <!-- Add your extensions here -->
+    </extensions>
+
+    <actions>
+        <!-- Add your actions here -->
+        <group id="io.github.peerapongsam.androidcodesorter" text="Sort Code" popup="true"
+               description="Sort code in order">
+            <action class="io.github.peerapongsam.androidcodesorter.action.SortAction"
+                    id="io.github.peerapongsam.androidcodesorter.action.SortAction"
+                    text="Default:Fields-&gt;Initializer-&gt;Constructor-&gt;Function"
+                    description="Sort the kotlin code in this order">
+                <keyboard-shortcut first-keystroke="control alt k" keymap="$default"/>
+            </action>
+            <add-to-group group-id="CodeMenu" anchor="last"/>
+        </group>
+    </actions>
+</idea-plugin>
