@@ -35,18 +35,6 @@ abstract class BaseSortStrategy(private val declarations: List<KtDeclaration>) {
             } ?: emptyList())
         }
 
-        val map = declarations.map { declaration ->
-            "declaration.modifierList = ${declaration.modifierList?.text},\n" +
-                    "declaration.name = ${declaration.name},\n" +
-                    "declaration.annotations = ${declaration.annotations},\n" +
-                    "declaration.text = ${declaration.text},\n" +
-                    "declaration.descriptor = ${declaration.descriptor},\n" +
-                    "declaration.constructor = ${declaration.constructor},\n" +
-                    "declaration.containingClassOrObject = ${declaration.containingClassOrObject},\n" +
-                    "declaration.visibilityModifierType() = ${declaration.visibilityModifierType()},\n" +
-                    "declaration.parameterIndex() = ${declaration.parameterIndex()}"
-        }
-
         return sortedDeclarations
     }
 }
