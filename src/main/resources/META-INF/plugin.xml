@@ -22,26 +22,23 @@
     <!-- uncomment to enable plugin in all products
     <depends>com.intellij.modules.lang</depends>
     -->
-    <idea-version since-build="171"/>
+    <idea-version since-build="171" />
     <depends>org.jetbrains.kotlin</depends>
     <extensions defaultExtensionNs="com.intellij">
         <!-- Add your extensions here -->
-        <applicationConfigurable instance="io.github.peerapongsam.androidcodesorter.config.ConfigComponent"/>
     </extensions>
 
     <actions>
         <!-- Add your actions here -->
-        <group id="io.github.peerapongsam.androidcodesorter"
-               text="Sort Kotlin Code"
-               popup="true"
-               description="Sort code in order">
+        <group id="io.github.peerapongsam.androidcodesorter" text="Sort Kotlin Code" popup="true"
+            description="Sort code in order">
             <action class="io.github.peerapongsam.androidkotlinsorter.action.SortAction"
-                    id="io.github.peerapongsam.androidkotlinsorter.action.SortAction"
-                    text="Default:Fields-&gt;Initializer-&gt;Constructor-&gt;Function"
-                    description="Sort the kotlin code in this order">
-                <keyboard-shortcut first-keystroke="control alt K" keymap="$default"/>
+                id="io.github.peerapongsam.androidkotlinsorter.action.SortAction"
+                text="Default:Fields-&gt;Initializer-&gt;Constructor-&gt;Function"
+                description="Sort the kotlin code in this order">
+                <keyboard-shortcut first-keystroke="control alt K" keymap="$default" />
             </action>
-            <add-to-group group-id="CodeMenu" anchor="last"/>
+            <add-to-group group-id="CodeMenu" anchor="last" />
         </group>
     </actions>
 </idea-plugin>

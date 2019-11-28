@@ -5,12 +5,9 @@ import io.github.peerapongsam.androidcodesorter.declaration.ClassDeclarationSort
 import io.github.peerapongsam.androidcodesorter.declaration.FunctionsDeclarationSort
 import io.github.peerapongsam.androidcodesorter.declaration.PropertiesDeclarationSort
 import io.github.peerapongsam.androidcodesorter.declaration.SecondaryConstructorDeclarationSort
-import org.jetbrains.kotlin.idea.search.usagesSearch.constructor
+import org.jetbrains.kotlin.descriptors.impl.PropertyDescriptorImpl
 import org.jetbrains.kotlin.idea.search.usagesSearch.descriptor
 import org.jetbrains.kotlin.psi.*
-import org.jetbrains.kotlin.psi.psiUtil.containingClassOrObject
-import org.jetbrains.kotlin.psi.psiUtil.parameterIndex
-import org.jetbrains.kotlin.psi.psiUtil.visibilityModifierType
 
 abstract class BaseSortStrategy(private val declarations: List<KtDeclaration>) {
 
@@ -33,6 +30,20 @@ abstract class BaseSortStrategy(private val declarations: List<KtDeclaration>) {
                     else -> list.sortedBy { it.name }
                 }
             } ?: emptyList())
+        }
+
+        val map = sortedDeclarations.map {
+
+            val descriptorImpl = it.descriptor as? PropertyDescriptorImpl
+            Pair("${it.name}(\n" +
+                    "isVar = ${descriptorImpl?.isVar},\n" +
+                    "isDelegated = ${descriptorImpl?.isDelegated},\n" +
+                    "isLateInit = ${descriptorImpl?.isLateInit},\n" +
+                    "isActual = ${descriptorImpl?.isActual},\n" +
+                    "isConst = ${descriptorImpl?.isConst},\n" +
+                    "isExpect = ${descriptorImpl?.isExpect},\n" +
+                    "isExternal = ${descriptorImpl?.isExternal}\n" +
+                    ")", it.descriptor)
         }
 
         return sortedDeclarations
