@@ -1,18 +1,20 @@
 <idea-plugin>
-    <id>io.github.peerapongsam.AndroidCodeSorter</id>
-    <name>Android Code Sorter</name>
+    <id>io.github.peerapongsam.AndroidKotlinSorter</id>
+    <name>Android Kotlin Sorter</name>
     <vendor email="peerapong_sam@hotmail.com" url="https://peerapongsam.github.io">GitHub page</vendor>
 
     <description><![CDATA[
     <em>Android Code Sorter</em>
     Plugin for sort android code
     followed by
-    companion object
-    val
-    var
-    lateinit var
-    val by factviewModel
-    val by lazy
+    <ul>
+    <li>Companion Object</li>
+    <li>Properties</li>
+    <li>Class Initializer</li>
+    <li>Secondary Constructors</li>
+    <li>Functions</li>
+    <li>Classes</li>
+    </ul>
     ]]></description>
 
     <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
@@ -24,17 +26,20 @@
     <depends>org.jetbrains.kotlin</depends>
     <extensions defaultExtensionNs="com.intellij">
         <!-- Add your extensions here -->
+        <applicationConfigurable instance="io.github.peerapongsam.androidcodesorter.config.ConfigComponent"/>
     </extensions>
 
     <actions>
         <!-- Add your actions here -->
-        <group id="io.github.peerapongsam.androidcodesorter" text="Sort Code" popup="true"
+        <group id="io.github.peerapongsam.androidcodesorter"
+               text="Sort Kotlin Code"
+               popup="true"
                description="Sort code in order">
-            <action class="io.github.peerapongsam.androidcodesorter.action.SortAction"
-                    id="io.github.peerapongsam.androidcodesorter.action.SortAction"
+            <action class="io.github.peerapongsam.androidkotlinsorter.action.SortAction"
+                    id="io.github.peerapongsam.androidkotlinsorter.action.SortAction"
                     text="Default:Fields-&gt;Initializer-&gt;Constructor-&gt;Function"
                     description="Sort the kotlin code in this order">
-                <keyboard-shortcut first-keystroke="control alt k" keymap="$default"/>
+                <keyboard-shortcut first-keystroke="control alt K" keymap="$default"/>
             </action>
             <add-to-group group-id="CodeMenu" anchor="last"/>
         </group>
