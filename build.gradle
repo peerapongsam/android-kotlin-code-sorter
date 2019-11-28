@@ -14,7 +14,7 @@ plugins {
 }
 
 group 'io.github.peerapongsam'
-version '1.0-SNAPSHOT'
+version '0.1'
 
 apply plugin: 'kotlin'
 
