@@ -11,20 +11,20 @@ import org.jetbrains.kotlin.psi.KtDeclaration
 class FunctionsDeclarationSort(private val declarations: MutableList<KtDeclaration>) : DeclarationSort {
 
     companion object {
+        private const val ON_ACTIVITY_CREATED = "onActivityCreated"
         private const val ON_ATTACH = "onAttach"
         private const val ON_CREATE = "onCreate"
         private const val ON_CREATE_VIEW = "onCreateView"
-        private const val ON_VIEW_CREATED = "onViewCreated"
-        private const val ON_ACTIVITY_CREATED = "onActivityCreated"
-        private const val ON_VIEW_STATE_RESTORED = "onViewStateRestored"
-        private const val ON_RESTART = "onRestart"
-        private const val ON_START = "onStart"
-        private const val ON_RESUME = "onResume"
-        private const val ON_PAUSE = "onPause"
-        private const val ON_STOP = "onStop"
-        private const val ON_DESTROY_VIEW = "onDestroyView"
         private const val ON_DESTROY = "onDestroy"
+        private const val ON_DESTROY_VIEW = "onDestroyView"
         private const val ON_DETACH = "onDetach"
+        private const val ON_PAUSE = "onPause"
+        private const val ON_RESTART = "onRestart"
+        private const val ON_RESUME = "onResume"
+        private const val ON_START = "onStart"
+        private const val ON_STOP = "onStop"
+        private const val ON_VIEW_CREATED = "onViewCreated"
+        private const val ON_VIEW_STATE_RESTORED = "onViewStateRestored"
 
         private val LIFECYCLE_ORDERING = listOf(
                 ON_ATTACH,
@@ -46,15 +46,18 @@ class FunctionsDeclarationSort(private val declarations: MutableList<KtDeclarati
 
     override fun sort(): List<KtDeclaration> {
         val functions = mutableListOf<KtDeclaration>()
-        val sortEventBus = sortEventBus()
-        functions.addAll(sortLifecycle())
-        functions.addAll(sortOverride())
-        functions.addAll(ModifierDeclarationSort(declarations).sort())
-        functions.addAll(sortEventBus)
+        val sortEventBusSubscribeFunctions = sortEventBusSubscribeFunctions()
+        functions.addAll(sortLifecycleFunctions())
+        functions.addAll(sortOverrideFunctions())
+        functions.addAll(sortUnitTestBeforeFunctions())
+        functions.addAll(sortUnitTestAfterFunctions())
+        functions.addAll(sortUnitTestTestFunctions())
+        functions.addAll(ModifierDeclarationSort(declarations.toMutableList()).sort())
+        functions.addAll(sortEventBusSubscribeFunctions)
         return functions
     }
 
-    private fun sortLifecycle(): List<KtDeclaration> {
+    private fun sortLifecycleFunctions(): List<KtDeclaration> {
         val functions = declarations.filter { it.name in LIFECYCLE_ORDERING }
         declarations.removeAll(functions)
         val lifecycleFunctions = mutableListOf<KtDeclaration>()
@@ -66,15 +69,33 @@ class FunctionsDeclarationSort(private val declarations: MutableList<KtDeclarati
         return lifecycleFunctions
     }
 
-    private fun sortOverride(): List<KtDeclaration> {
+    private fun sortOverrideFunctions(): List<KtDeclaration> {
         val functions = declarations.filter { it.text.startsWith("override") }
         declarations.removeAll(functions)
-        return functions.sortedBy { it.name }
+        return ModifierDeclarationSort(functions.toMutableList()).sort()
     }
 
-    private fun sortEventBus(): List<KtDeclaration> {
+    private fun sortUnitTestAfterFunctions(): List<KtDeclaration> {
+        val functions = declarations.filter { it.text.contains("@After") }
+        declarations.removeAll(functions)
+        return ModifierDeclarationSort(functions.toMutableList()).sort()
+    }
+
+    private fun sortUnitTestBeforeFunctions(): List<KtDeclaration> {
+        val functions = declarations.filter { it.text.contains("@Before") }
+        declarations.removeAll(functions)
+        return ModifierDeclarationSort(functions.toMutableList()).sort()
+    }
+
+    private fun sortUnitTestTestFunctions(): List<KtDeclaration> {
+        val functions = declarations.filter { it.text.contains("@Test") }
+        declarations.removeAll(functions)
+        return ModifierDeclarationSort(functions.toMutableList()).sort()
+    }
+
+    private fun sortEventBusSubscribeFunctions(): List<KtDeclaration> {
         val functions = declarations.filter { it.text.contains("@Subscribe") }
         declarations.removeAll(functions)
-        return functions.sortedBy { it.name }
+        return ModifierDeclarationSort(functions.toMutableList()).sort()
     }
 }

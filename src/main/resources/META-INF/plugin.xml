@@ -1,20 +1,72 @@
 <idea-plugin>
     <id>io.github.peerapongsam.AndroidKotlinSorter</id>
-    <name>Android Kotlin Sorter</name>
+    <name>Android Kotlin Code Sorter</name>
     <vendor email="peerapong_sam@hotmail.com" url="https://peerapongsam.github.io">GitHub page</vendor>
 
     <description><![CDATA[
-    <em>Android Code Sorter</em>
-    Plugin for sort android code
-    followed by
-    <ul>
-    <li>Companion Object</li>
-    <li>Properties</li>
-    <li>Class Initializer</li>
-    <li>Secondary Constructors</li>
-    <li>Functions</li>
-    <li>Classes</li>
-    </ul>
+    <article>
+        <h1>Android Kotlin Code Sorter Plugin</h1>
+        <ul>
+            <li>Group and Sort code</li>
+            <li>Only support kotlin</li>
+        </ul>
+        <h2>Orders</h2>
+        <ul>
+            <li>
+                <p><strong>Companion objects</strong> (<code>companion object {}</code>)</p>
+            </li>
+            <li>
+                <p><strong>Properties and Fields</strong> (Sort by Visibility Modifiers and Alphabet)</p>
+                <ul>
+                    <li>Constants (<code>const val FOO = "foo"</code>)</li>
+                    <li>Overriding Properties (<code>override val foo = "foo"</code>, <code>override var foo = "foo"</code>)</li>
+                    <li>Read-only Properties(<code>val foo = "</code>)</li>
+                    <li>Mutable Properties(<code>var foo = "foo"</code>)</li>
+                    <li>Late-Initialized Properties (<code>lateinit var foo: String</code>)</li>
+                    <li>Inject Properties (<code>val foo by inject&lt;String&gt;()</code> or <code>val foo by viewModel&lt;AnyViewModel&gt;()</code> or <code>@Inject lateinit var foo : String</code>)</li>
+                    <li>Standard Delegated Properties (<code>val foo by lazy { "foo" }</code>)</li>
+                    <li>Custom Delegated Properties (<code>val fooViewBinding by viewBinding(R.layout.activity_foo)</code>)</li>
+                    <li>Backing Fields (<code>val foo get() = "foo"</code>, <code>var foo get() = "foo" set(value) { field = value }</code>)</li>
+                    <li>Backing Properties (<code>private var _foo = "foo"</code>, <code>val foo = _foo</code>)</li>
+                    <li>Other Properties</li>
+                </ul>
+            </li>
+            <li>
+                <p><strong>Class Initializer</strong> (<code>init {}</code>)</p>
+            </li>
+            <li>
+                <p><strong>Secondary Constructor</strong> (<code>Foo() : this("foo")</code>)</p>
+            </li>
+            <li>
+                <p><strong>Functions</strong></p>
+                <ul>
+                    <li>Activity, Fragment Lifecycle (<code>onAttach()</code>, <code>OnCreate()</code>, <code>onCreateView()</code>, <code>onViewCreated()</code>, <code>onActivityCreated()</code>,
+                    <code>onViewStateRestored()</code>, <code>onRestart()</code>, <code>onResume()</code>, <code>onPause()</code>, <code>onStop()</code>, <code>onDestroyView()</code>, <code>onDestroy()</code>, <code>onDetach()</code>)</li>
+                    <li>Override Functions</li>
+                    <li>Unit Test (`@Before`, `@After`, `@Test`)</li>
+                    <li>Functions (Sort by Visibility Modifiers and Alphabet)</li>
+                    <li>EventBus Functions (<code>@Subscribe fun foo() {}</code>)</li>
+                </ul>
+            </li>
+            <li>
+                <p><strong>Classes and Interfaces</strong></p>
+                <ul>
+                    <li>Class (<code>class Foo()</code>) (Sort by Visibility Modifiers and Alphabet)</li>
+                    <li>Inner Classes (<code>inner class Foo()</code>) (Sort by Visibility Modifiers and Alphabet)</li>
+                    <li>Interfaces (<code>interface Foo</code>) (Sort by Visibility Modifiers and Alphabet)</li>
+                </ul>
+            </li>
+            <li>
+                <p><strong>Visibility Modifiers</strong></p>
+                <ul>
+                    <li><code>public</code> or default (default is <code>public</code>)</li>
+                    <li><code>protected</code></li>
+                    <li><code>internal</code></li>
+                    <li><code>private</code></li>
+                </ul>
+            </li>
+        </ul>
+    </article>
     ]]></description>
 
     <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html

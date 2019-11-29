@@ -28,6 +28,7 @@
     - Activity, Fragment Lifecycle (`onAttach()`, `OnCreate()`, `onCreateView()`, `onViewCreated()`, `onActivityCreated()`, 
     `onViewStateRestored()`, `onRestart()`, `onResume()`, `onPause()`, `onStop()`, `onDestroyView()`, `onDestroy()`, `onDetach()`)
     - Override Functions
+    - Unit Test (`@Before`, `@After`, `@Test`)
     - Functions (Sort by Visibility Modifiers and Alphabet)
     - EventBus Functions (`@Subscribe fun foo() {}`)
     
