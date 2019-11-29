@@ -1,6 +1,6 @@
-package io.github.peerapongsam.androidcodesorter.sort
+package io.github.peerapongsam.androidkotlinsorter.sort
 
-import io.github.peerapongsam.androidcodesorter.sortstratregy.CommonSortStrategy
+import io.github.peerapongsam.androidkotlinsorter.sortstratregy.CommonSortStrategy
 import org.jetbrains.kotlin.psi.KtClassOrObject
 
 class Sorter(private val psiClass: KtClassOrObject) {

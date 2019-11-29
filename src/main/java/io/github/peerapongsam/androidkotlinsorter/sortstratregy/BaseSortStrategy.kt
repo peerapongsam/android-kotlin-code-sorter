@@ -1,10 +1,10 @@
-package io.github.peerapongsam.androidcodesorter.sortstratregy
+package io.github.peerapongsam.androidkotlinsorter.sortstratregy
 
 
-import io.github.peerapongsam.androidcodesorter.declaration.ClassDeclarationSort
-import io.github.peerapongsam.androidcodesorter.declaration.FunctionsDeclarationSort
-import io.github.peerapongsam.androidcodesorter.declaration.PropertiesDeclarationSort
-import io.github.peerapongsam.androidcodesorter.declaration.SecondaryConstructorDeclarationSort
+import io.github.peerapongsam.androidkotlinsorter.declaration.ClassDeclarationSort
+import io.github.peerapongsam.androidkotlinsorter.declaration.FunctionsDeclarationSort
+import io.github.peerapongsam.androidkotlinsorter.declaration.PropertiesDeclarationSort
+import io.github.peerapongsam.androidkotlinsorter.declaration.SecondaryConstructorDeclarationSort
 import org.jetbrains.kotlin.descriptors.impl.PropertyDescriptorImpl
 import org.jetbrains.kotlin.idea.search.usagesSearch.descriptor
 import org.jetbrains.kotlin.psi.*

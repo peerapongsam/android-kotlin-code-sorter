@@ -1,4 +1,4 @@
-package io.github.peerapongsam.androidcodesorter.sortstratregy
+package io.github.peerapongsam.androidkotlinsorter.sortstratregy
 
 import org.jetbrains.kotlin.psi.*
 

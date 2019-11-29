@@ -1,4 +1,4 @@
-package io.github.peerapongsam.androidcodesorter.declaration
+package io.github.peerapongsam.androidkotlinsorter.declaration
 
 import org.jetbrains.kotlin.psi.KtDeclaration
 import org.jetbrains.kotlin.psi.psiUtil.visibilityModifierType

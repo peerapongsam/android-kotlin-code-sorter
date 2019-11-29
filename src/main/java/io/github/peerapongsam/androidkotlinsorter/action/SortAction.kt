@@ -4,7 +4,7 @@ import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.actionSystem.LangDataKeys
 import com.intellij.openapi.command.WriteCommandAction
-import io.github.peerapongsam.androidcodesorter.sort.Sorter
+import io.github.peerapongsam.androidkotlinsorter.sort.Sorter
 import org.jetbrains.kotlin.psi.KtClassOrObject
 
 open class SortAction : AnAction() {

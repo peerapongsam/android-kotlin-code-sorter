@@ -1,4 +1,4 @@
-package io.github.peerapongsam.androidcodesorter.declaration
+package io.github.peerapongsam.androidkotlinsorter.declaration
 
 import org.jetbrains.kotlin.descriptors.impl.PropertyDescriptorImpl
 import org.jetbrains.kotlin.descriptors.impl.PropertySetterDescriptorImpl
@@ -81,7 +81,9 @@ class PropertiesDeclarationSort(private val declarations: MutableList<KtDeclarat
 
     private fun isBackingField(property: KtDeclaration): Boolean {
         val descriptor = property.descriptor as PropertyDescriptorImpl
-        return !property.text.contains("return _") && (descriptor.setter as? PropertySetterDescriptorImpl)?.isDefault != true || descriptor.getter?.isDefault != true
+        return !property.text.contains("return _")
+                && ((descriptor.isVar && (descriptor.setter as? PropertySetterDescriptorImpl)?.isDefault != true || descriptor.getter?.isDefault != true)
+                || (!descriptor.isVar && descriptor.getter?.isDefault != true))
     }
 
     private fun isBackingProperties(property: KtDeclaration): Boolean {

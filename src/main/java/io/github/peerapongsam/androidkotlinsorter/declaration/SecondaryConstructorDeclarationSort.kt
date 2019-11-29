@@ -1,4 +1,4 @@
-package io.github.peerapongsam.androidcodesorter.declaration
+package io.github.peerapongsam.androidkotlinsorter.declaration
 
 import org.jetbrains.kotlin.idea.search.usagesSearch.constructor
 import org.jetbrains.kotlin.psi.KtDeclaration
