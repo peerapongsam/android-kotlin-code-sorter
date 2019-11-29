@@ -4,7 +4,7 @@ buildscript {
     }
 
     dependencies {
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.3.60"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.3.61"
     }
 }
 
@@ -14,7 +14,7 @@ plugins {
 }
 
 group 'io.github.peerapongsam'
-version '0.1'
+version '1.0.1'
 
 apply plugin: 'kotlin'
 
