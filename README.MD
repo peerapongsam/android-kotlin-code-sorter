@@ -19,10 +19,10 @@
     - Backing Fields (`val foo get() = "foo"`, `var foo get() = "foo" set(value) { field = value }`)
     - Backing Properties (`private var _foo = "foo"`, `val foo = _foo`)
     - Other Properties
-    
-- __Class Initializer__ (`init {}`)
 
 - __Secondary Constructor__ (`Foo() : this("foo")`)
+    
+- __Class Initializer__ (`init {}`)
     
 - __Functions__
     - Activity, Fragment Lifecycle (`onAttach()`, `OnCreate()`, `onCreateView()`, `onViewCreated()`, `onActivityCreated()`, 

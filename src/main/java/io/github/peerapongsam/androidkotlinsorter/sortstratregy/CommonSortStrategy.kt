@@ -12,8 +12,8 @@ class CommonSortStrategy(declarations: List<KtDeclaration>) : BaseSortStrategy(d
         fun getDefaultOrdering(): List<String> = listOf(
                 KtObjectDeclaration::class.java.name,
                 KtProperty::class.java.name,
-                KtClassInitializer::class.java.name,
                 KtSecondaryConstructor::class.java.name,
+                KtClassInitializer::class.java.name,
                 KtNamedFunction::class.java.name,
                 KtClass::class.java.name
         )

@@ -32,10 +32,10 @@
                 </ul>
             </li>
             <li>
-                <p><strong>Class Initializer</strong> (<code>init {}</code>)</p>
+                <p><strong>Secondary Constructor</strong> (<code>Foo() : this("foo")</code>)</p>
             </li>
             <li>
-                <p><strong>Secondary Constructor</strong> (<code>Foo() : this("foo")</code>)</p>
+                <p><strong>Class Initializer</strong> (<code>init {}</code>)</p>
             </li>
             <li>
                 <p><strong>Functions</strong></p>
