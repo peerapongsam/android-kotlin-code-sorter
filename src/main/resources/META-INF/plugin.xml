@@ -1,7 +1,7 @@
 <idea-plugin>
     <id>io.github.peerapongsam.AndroidKotlinSorter</id>
     <name>Android Kotlin Code Sorter</name>
-    <vendor email="peerapong_sam@hotmail.com" url="https://peerapongsam.github.io">GitHub page</vendor>
+    <vendor email="peerapong_sam@hotmail.com" url="https://github.com/peerapongsam/android-kotlin-code-sorter">GitHub</vendor>
 
     <description><![CDATA[
     <article>
@@ -43,7 +43,7 @@
                     <li>Activity, Fragment Lifecycle (<code>onAttach()</code>, <code>OnCreate()</code>, <code>onCreateView()</code>, <code>onViewCreated()</code>, <code>onActivityCreated()</code>,
                     <code>onViewStateRestored()</code>, <code>onRestart()</code>, <code>onResume()</code>, <code>onPause()</code>, <code>onStop()</code>, <code>onDestroyView()</code>, <code>onDestroy()</code>, <code>onDetach()</code>)</li>
                     <li>Override Functions</li>
-                    <li>Unit Test (`@Before`, `@After`, `@Test`)</li>
+                    <li>Unit Test (<code>@Before</code>, <code>@After</code>, <code>@Test</code>)</li>
                     <li>Functions (Sort by Visibility Modifiers and Alphabet)</li>
                     <li>EventBus Functions (<code>@Subscribe fun foo() {}</code>)</li>
                 </ul>
