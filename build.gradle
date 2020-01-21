@@ -14,7 +14,7 @@ plugins {
 }
 
 group 'io.github.peerapongsam'
-version '1.0.0-alpha01'
+version '1.0.0-alpha02'
 
 apply plugin: 'kotlin'
 
@@ -43,8 +43,7 @@ compileTestKotlin {
 }
 patchPluginXml {
     changeNotes """
-      Add change notes here.<br>
-      <em>most HTML tags may be used</em>"""
+      Add settings for enabled/disabled order by name"""
 }
 
 tasks.withType(JavaCompile) {

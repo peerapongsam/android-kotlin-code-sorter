@@ -3,7 +3,6 @@
 - Group and Sort code
 - Only support kotlin
 
-
 ## Orders
 - __Companion objects__ (`companion object {}`)
 
@@ -43,3 +42,7 @@
     - `internal`
     - `private`
     
+
+## Inspired by
+[Kotlin Code Sorter](https://plugins.jetbrains.com/plugin/11163-kotlin-code-sorter)
+[Lifecycle Sorter](https://plugins.jetbrains.com/plugin/7742-lifecycle-sorter)
