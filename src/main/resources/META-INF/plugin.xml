@@ -1,7 +1,8 @@
 <idea-plugin>
     <id>io.github.peerapongsam.AndroidKotlinSorter</id>
     <name>Android Kotlin Code Sorter</name>
-    <vendor email="peerapong_sam@hotmail.com" url="https://github.com/peerapongsam/android-kotlin-code-sorter">GitHub</vendor>
+    <vendor email="peerapong_sam@hotmail.com" url="https://github.com/peerapongsam/android-kotlin-code-sorter">GitHub
+    </vendor>
 
     <description><![CDATA[
     <article>
@@ -74,19 +75,20 @@
     <!-- uncomment to enable plugin in all products
     <depends>com.intellij.modules.lang</depends>
     -->
-    <idea-version since-build="171" />
+    <idea-version since-build="171"/>
     <depends>org.jetbrains.kotlin</depends>
     <extensions defaultExtensionNs="com.intellij">
         <!-- Add your extensions here -->
+        <applicationConfigurable instance="io.github.peerapongsam.androidkotlinsorter.config.SortConfigurable"/>
     </extensions>
 
     <actions>
         <!-- Add your actions here -->
         <action class="io.github.peerapongsam.androidkotlinsorter.action.SortAction"
-            id="io.github.peerapongsam.androidkotlinsorter.action.SortAction" text="Sort Kotlin Code"
-            description="Sort the kotlin code in this order">
-            <keyboard-shortcut first-keystroke="control alt K" keymap="$default" />
-            <add-to-group group-id="CodeFormatGroup" anchor="after" relative-to-action="RearrangeCode" />
+                id="io.github.peerapongsam.androidkotlinsorter.action.SortAction" text="Sort Kotlin Code"
+                description="Sort the kotlin code in this order">
+            <keyboard-shortcut first-keystroke="control alt K" keymap="$default"/>
+            <add-to-group group-id="CodeFormatGroup" anchor="after" relative-to-action="RearrangeCode"/>
         </action>
 
     </actions>

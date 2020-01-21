@@ -1,5 +1,7 @@
 package io.github.peerapongsam.androidkotlinsorter.declaration
 
+import com.intellij.ide.util.PropertiesComponent
+import io.github.peerapongsam.androidkotlinsorter.config.SortConfigurable
 import org.jetbrains.kotlin.descriptors.impl.PropertyDescriptorImpl
 import org.jetbrains.kotlin.descriptors.impl.PropertySetterDescriptorImpl
 import org.jetbrains.kotlin.idea.search.usagesSearch.descriptor
@@ -47,6 +49,10 @@ class PropertiesDeclarationSort(private val declarations: MutableList<KtDeclarat
 
     private var propertiesSortOrders: List<String>
 
+    private val isOrderPropertiesByName by lazy {
+        PropertiesComponent.getInstance().getBoolean(SortConfigurable.SAVED_ORDER_PROPERTIES_BY_NAME, false)
+    }
+
     init {
         propertiesSortOrders = getDefaultOrders()
     }
@@ -71,7 +77,7 @@ class PropertiesDeclarationSort(private val declarations: MutableList<KtDeclarat
                     properties.addAll(sortBackingMutableFields())
                 }
                 BACKING_PROPERTIES -> properties.addAll(sortBackingProperties())
-                else -> properties.addAll(ModifierDeclarationSort(declarations.toMutableList()).sort())
+                else -> properties.addAll(ModifierDeclarationSort(declarations.toMutableList(), isOrderPropertiesByName).sort())
             }
         }
 
@@ -137,7 +143,7 @@ class PropertiesDeclarationSort(private val declarations: MutableList<KtDeclarat
     private fun sortBackingMutableFields(): Collection<KtDeclaration> {
         val properties = declarations.filter { isBackingField(it) && !isBackingProperties(it) && (it.descriptor as PropertyDescriptorImpl).isVar }
         declarations.removeAll(properties)
-        return ModifierDeclarationSort(properties.toMutableList()).sort()
+        return ModifierDeclarationSort(properties.toMutableList(), isOrderPropertiesByName).sort()
     }
 
     private fun sortBackingProperties(): Collection<KtDeclaration> {
@@ -156,37 +162,37 @@ class PropertiesDeclarationSort(private val declarations: MutableList<KtDeclarat
     private fun sortBackingReadOnlyFields(): List<KtDeclaration> {
         val properties = declarations.filter { isBackingField(it) && !isBackingProperties(it) && !(it.descriptor as PropertyDescriptorImpl).isVar }
         declarations.removeAll(properties)
-        return ModifierDeclarationSort(properties.toMutableList()).sort()
+        return ModifierDeclarationSort(properties.toMutableList(), isOrderPropertiesByName).sort()
     }
 
     private fun sortConstants(): List<KtDeclaration> {
         val properties = declarations.filter { isConstant(it) }
         declarations.removeAll(properties)
-        return ModifierDeclarationSort(properties.toMutableList()).sort()
+        return ModifierDeclarationSort(properties.toMutableList(), isOrderPropertiesByName).sort()
     }
 
     private fun sortCustomDelegateProperties(): List<KtDeclaration> {
         val properties = declarations.filter { isCustomDelegateProperty(it) }
         declarations.removeAll(properties)
-        return ModifierDeclarationSort(properties.toMutableList()).sort()
+        return ModifierDeclarationSort(properties.toMutableList(), isOrderPropertiesByName).sort()
     }
 
     private fun sortInjectProperties(): List<KtDeclaration> {
         val properties = declarations.filter { isInjectProperty(it) }
         declarations.removeAll(properties)
-        return ModifierDeclarationSort(properties.toMutableList()).sort()
+        return ModifierDeclarationSort(properties.toMutableList(), isOrderPropertiesByName).sort()
     }
 
     private fun sortLateInitializedProperties(): List<KtDeclaration> {
         val properties = declarations.filter { isLateInitializedProperty(it) }
         declarations.removeAll(properties)
-        return ModifierDeclarationSort(properties.toMutableList()).sort()
+        return ModifierDeclarationSort(properties.toMutableList(), isOrderPropertiesByName).sort()
     }
 
     private fun sortMutableProperties(): List<KtDeclaration> {
         val properties = declarations.filter { isMutableProperty(it) && !isBackingField(it) && !isBackingProperties(it) }
         declarations.removeAll(properties)
-        return ModifierDeclarationSort(properties.toMutableList()).sort()
+        return ModifierDeclarationSort(properties.toMutableList(), isOrderPropertiesByName).sort()
     }
 
     private fun sortOverridingMutableProperties(): List<KtDeclaration> {
@@ -194,24 +200,24 @@ class PropertiesDeclarationSort(private val declarations: MutableList<KtDeclarat
             isOverridingProperty(it) && (it.descriptor as PropertyDescriptorImpl).isVar
         }
         declarations.removeAll(properties)
-        return ModifierDeclarationSort(properties.toMutableList()).sort()
+        return ModifierDeclarationSort(properties.toMutableList(), isOrderPropertiesByName).sort()
     }
 
     private fun sortOverridingReadOnlyProperties(): List<KtDeclaration> {
         val properties = declarations.filter { isOverridingProperty(it) && !(it.descriptor as PropertyDescriptorImpl).isVar }
         declarations.removeAll(properties)
-        return ModifierDeclarationSort(properties.toMutableList()).sort()
+        return ModifierDeclarationSort(properties.toMutableList(), isOrderPropertiesByName).sort()
     }
 
     private fun sortReadOnlyProperties(): List<KtDeclaration> {
         val properties = declarations.filter { isReadOnlyProperty(it) && !isBackingField(it) && !isBackingProperties(it) }
         declarations.removeAll(properties)
-        return ModifierDeclarationSort(properties.toMutableList()).sort()
+        return ModifierDeclarationSort(properties.toMutableList(), isOrderPropertiesByName).sort()
     }
 
     private fun sortStandardDelegatedProperties(): List<KtDeclaration> {
         val properties = declarations.filter { isStandardDelegatedProperty(it) }
         declarations.removeAll(properties)
-        return ModifierDeclarationSort(properties.toMutableList()).sort()
+        return ModifierDeclarationSort(properties.toMutableList(), isOrderPropertiesByName).sort()
     }
 }
