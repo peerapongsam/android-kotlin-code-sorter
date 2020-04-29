@@ -50,16 +50,22 @@ class ModifierPropertiesDeclarationSort(declarations: MutableList<KtDeclaration>
         properties.addAll(sortProtected())
         properties.addAll(sortInternal())
         properties.addAll(sortPrivate())
-        if (isOrderPropertiesByName) {
-            properties.addAll(declarations.sortedBy { it.name })
-        } else {
-            properties.addAll(declarations)
-        }
+        properties.addAll(sortElse())
         return properties
     }
 
+    private fun sortElse(): List<KtDeclaration> {
+        val filter = declarations.filter { !isBackingProperties(it) }
+        declarations.removeAll(filter)
+        return if (isOrderPropertiesByName) {
+            filter.sortedBy { it.name }
+        } else {
+            filter
+        }
+    }
+
     private fun sortPublic(): List<KtDeclaration> {
-        val functions = declarations.filter { (it.visibilityModifierType() == null || it.visibilityModifierType().toString() == "public") }
+        val functions = declarations.filter { (it.visibilityModifierType() == null || it.visibilityModifierType().toString() == "public") && !isBackingProperties(it) }
         declarations.removeAll(functions)
         return if (isOrderPropertiesByName) {
             BasePropertiesDeclarationSort(functions.toMutableList()).sort().sortedBy { it.name }
@@ -69,7 +75,7 @@ class ModifierPropertiesDeclarationSort(declarations: MutableList<KtDeclaration>
     }
 
     private fun sortProtected(): List<KtDeclaration> {
-        val functions = declarations.filter { it.visibilityModifierType().toString() == "protected" }
+        val functions = declarations.filter { it.visibilityModifierType().toString() == "protected" && !isBackingProperties(it) }
         declarations.removeAll(functions)
         return if (isOrderPropertiesByName) {
             BasePropertiesDeclarationSort(functions.toMutableList()).sort().sortedBy { it.name }
@@ -79,7 +85,7 @@ class ModifierPropertiesDeclarationSort(declarations: MutableList<KtDeclaration>
     }
 
     private fun sortInternal(): List<KtDeclaration> {
-        val functions = declarations.filter { it.visibilityModifierType().toString() == "internal" }
+        val functions = declarations.filter { it.visibilityModifierType().toString() == "internal" && !isBackingProperties(it) }
         declarations.removeAll(functions)
         return if (isOrderPropertiesByName) {
             BasePropertiesDeclarationSort(functions.toMutableList()).sort().sortedBy { it.name }
@@ -89,7 +95,7 @@ class ModifierPropertiesDeclarationSort(declarations: MutableList<KtDeclaration>
     }
 
     private fun sortPrivate(): List<KtDeclaration> {
-        val functions = declarations.filter { it.visibilityModifierType().toString() == "private" }
+        val functions = declarations.filter { it.visibilityModifierType().toString() == "private" && !isBackingProperties(it) }
         declarations.removeAll(functions)
         return if (isOrderPropertiesByName) {
             BasePropertiesDeclarationSort(functions.toMutableList()).sort().sortedBy { it.name }
