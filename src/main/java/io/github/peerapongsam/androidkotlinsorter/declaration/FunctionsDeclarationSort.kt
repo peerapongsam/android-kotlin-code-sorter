@@ -61,12 +61,19 @@ class FunctionsDeclarationSort(private val declarations: MutableList<KtDeclarati
             functions.addAll(sortLifecycleFunctions())
         }
         functions.addAll(sortOverrideFunctions())
+        functions.addAll(sortLiveDataFunctions())
         functions.addAll(sortUnitTestBeforeFunctions())
         functions.addAll(sortUnitTestAfterFunctions())
         functions.addAll(sortUnitTestTestFunctions())
         functions.addAll(ModifierDeclarationSort(declarations.toMutableList(), isOrderFunctionsByName).sort())
         functions.addAll(sortEventBusSubscribeFunctions)
         return functions
+    }
+
+    private fun sortLiveDataFunctions(): Collection<KtDeclaration> {
+        val functions = declarations.filter { it.text.contains("fun.+on.+\\(\\):.+LiveData.+".toRegex()) }
+        declarations.removeAll(functions)
+        return ModifierDeclarationSort(functions.toMutableList(), isOrderFunctionsByName).sort()
     }
 
     private fun sortLifecycleFunctions(): List<KtDeclaration> {
@@ -84,7 +91,11 @@ class FunctionsDeclarationSort(private val declarations: MutableList<KtDeclarati
     private fun sortOverrideFunctions(): List<KtDeclaration> {
         val functions = declarations.filter { it.text.startsWith("override") }
         declarations.removeAll(functions)
-        return ModifierDeclarationSort(functions.toMutableList(), isOrderFunctionsByName).sort()
+        return if (isOrderFunctionsByName) {
+            functions.sortedBy { it.name }
+        } else {
+            functions
+        }
     }
 
     private fun sortUnitTestAfterFunctions(): List<KtDeclaration> {

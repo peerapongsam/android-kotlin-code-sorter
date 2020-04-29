@@ -87,7 +87,7 @@
         <action class="io.github.peerapongsam.androidkotlinsorter.action.SortAction"
                 id="io.github.peerapongsam.androidkotlinsorter.action.SortAction" text="Sort Kotlin Code"
                 description="Sort the kotlin code in this order">
-            <keyboard-shortcut first-keystroke="control alt K" keymap="$default"/>
+            <keyboard-shortcut first-keystroke="control shift alt K" keymap="$default"/>
             <add-to-group group-id="CodeFormatGroup" anchor="after" relative-to-action="RearrangeCode"/>
         </action>
 

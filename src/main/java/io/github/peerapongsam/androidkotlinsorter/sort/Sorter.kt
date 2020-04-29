@@ -22,6 +22,7 @@ class Sorter(private val psiClass: KtClassOrObject) {
         if (before != after) {
             sort.forEach {
                 classOrObject.addDeclaration(it)
+                classOrObject
             }
             declarations.forEach {
                 it.delete()

@@ -1,38 +1,42 @@
 buildscript {
     repositories {
+        jcenter()
         mavenCentral()
     }
 
     dependencies {
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.3.61"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.3.72"
     }
 }
 
 plugins {
+    id 'idea'
     id 'java'
-    id 'org.jetbrains.intellij' version '0.4.13'
+    id 'org.jetbrains.intellij' version '0.4.18'
+    id "org.jetbrains.kotlin.jvm" version '1.3.50'
 }
 
 group 'io.github.peerapongsam'
-version '1.0.0-alpha02'
+version '1.0.0-alpha03'
 
 apply plugin: 'kotlin'
 
 sourceCompatibility = 1.8
 
 repositories {
+    jcenter()
     mavenCentral()
 }
 
 dependencies {
     implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8'
-    testImplementation group: 'junit', name: 'junit', version: '4.12'
+    testImplementation 'junit:junit:4.12'
 }
 
 // See https://github.com/JetBrains/gradle-intellij-plugin/
 intellij {
-    version '2019.2.4'
-    plugins 'org.jetbrains.kotlin:1.3.61-release-IJ2019.2-1' //here
+    version '2020.1'
+    plugins 'org.jetbrains.kotlin:1.3.72-release-IJ2020.1-1' //here
     intellij.updateSinceUntilBuild false
 }
 compileKotlin {

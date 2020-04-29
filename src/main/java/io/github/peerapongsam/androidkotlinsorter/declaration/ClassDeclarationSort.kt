@@ -31,11 +31,9 @@ class ClassDeclarationSort(private val declarations: MutableList<KtDeclaration>)
         return ModifierDeclarationSort(functions.toMutableList(), isOrderInnerClassesByName).sort()
     }
 
-
     private fun sortInterface(): List<KtDeclaration> {
         val functions = declarations.filter { it.text.contains("interface") }
         declarations.removeAll(functions)
         return ModifierDeclarationSort(functions.toMutableList(), isOrderInnerClassesByName).sort()
     }
-
 }

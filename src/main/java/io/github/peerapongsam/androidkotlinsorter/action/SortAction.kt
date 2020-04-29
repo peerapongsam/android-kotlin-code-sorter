@@ -3,8 +3,11 @@ package io.github.peerapongsam.androidkotlinsorter.action
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.actionSystem.LangDataKeys
+import com.intellij.openapi.actionSystem.PlatformDataKeys
 import com.intellij.openapi.command.WriteCommandAction
+import com.intellij.psi.util.PsiTreeUtil
 import io.github.peerapongsam.androidkotlinsorter.sort.Sorter
+import org.jetbrains.kotlin.idea.refactoring.memberInfo.KtPsiClassWrapper
 import org.jetbrains.kotlin.psi.KtClassOrObject
 
 open class SortAction : AnAction() {
