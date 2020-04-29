@@ -52,63 +52,63 @@ abstract class BaseSortStrategy(private val declarations: List<KtDeclaration>) {
             } ?: emptyList())
         }
 
-
-        val map = sortedDeclarations.map {
-            when (val descriptor = it.descriptor) {
-                is FunctionDescriptor -> {
-                    Pair("${it.name}(\n" +
-                            "text = ${it.text},\n" +
-                            "isInline = ${descriptor.isInline},\n" +
-                            "isInfix = ${descriptor.isInfix},\n" +
-                            "isOperator = ${descriptor.isOperator},\n" +
-                            "isSuspend = ${descriptor.isSuspend},\n" +
-                            "isTailrec = ${descriptor.isTailrec},\n" +
-                            "isExpect = ${descriptor.isExpect},\n" +
-                            "isExternal = ${descriptor.isExternal}\n" +
-                            "original.overriddenDescriptors = ${descriptor.original.overriddenDescriptors.firstOrNull()?.containingDeclaration?.name}\n" +
-                            "getDefinedClass = ${Utils.getDefinedClass(descriptor)}\n" +
-                            ")", descriptor)
-                }
-                is PropertyDescriptor -> {
-                    Pair("${it.name}", descriptor)
-                    Pair("${it.name}(\n" +
-                            "text = ${it.text},\n" +
-                            "isVar = ${descriptor.isVar},\n" +
-                            "getter = ${descriptor.getter},\n" +
-                            "setter = ${descriptor.setter},\n" +
-                            "isDelegated = ${descriptor.isDelegated},\n" +
-                            "isLateInit = ${descriptor.isLateInit},\n" +
-                            "isActual = ${descriptor.isActual},\n" +
-                            "isConst = ${descriptor.isConst},\n" +
-                            "isExpect = ${descriptor.isExpect},\n" +
-                            "isExternal = ${descriptor.isExternal}\n" +
-                            "backingField = ${descriptor.backingField}\n" +
-                            "delegateField = ${descriptor.delegateField}\n" +
-                            ")", it.descriptor)
-                }
-                is ClassDescriptor -> {
-                    Pair("${it.name}", descriptor)
-                    Pair("${it.name}(\n" +
-                            "text = ${it.text},\n" +
-                            "isVar = ${descriptor.isCompanionObject},\n" +
-                            "isData = ${descriptor.isData},\n" +
-                            "isInner = ${descriptor.isInner},\n" +
-                            "isInline = ${descriptor.isInline},\n" +
-                            "isFinalOrEnum = ${descriptor.isFinalOrEnum},\n" +
-                            "isExpect = ${descriptor.isExpect},\n" +
-                            "isExternal = ${descriptor.isExternal}\n" +
-                            ")", it.descriptor)
-                }
-                is EnumEntrySyntheticClassDescriptor -> {
-                    Pair("${it.name}", descriptor)
-                }
-                else -> {
-                    Pair("${it.name}", descriptor)
-                }
-            }
-        }.also {
-            println(it.joinToString("\n"))
-        }
+//
+//        val map = sortedDeclarations.map {
+//            when (val descriptor = it.descriptor) {
+//                is FunctionDescriptor -> {
+//                    Pair("${it.name}(\n" +
+//                            "text = ${it.text},\n" +
+//                            "isInline = ${descriptor.isInline},\n" +
+//                            "isInfix = ${descriptor.isInfix},\n" +
+//                            "isOperator = ${descriptor.isOperator},\n" +
+//                            "isSuspend = ${descriptor.isSuspend},\n" +
+//                            "isTailrec = ${descriptor.isTailrec},\n" +
+//                            "isExpect = ${descriptor.isExpect},\n" +
+//                            "isExternal = ${descriptor.isExternal}\n" +
+//                            "original.overriddenDescriptors = ${descriptor.original.overriddenDescriptors.firstOrNull()?.containingDeclaration?.name}\n" +
+//                            "getDefinedClass = ${Utils.getDefinedClass(descriptor)}\n" +
+//                            ")", descriptor)
+//                }
+//                is PropertyDescriptor -> {
+//                    Pair("${it.name}", descriptor)
+//                    Pair("${it.name}(\n" +
+//                            "text = ${it.text},\n" +
+//                            "isVar = ${descriptor.isVar},\n" +
+//                            "getter = ${descriptor.getter},\n" +
+//                            "setter = ${descriptor.setter},\n" +
+//                            "isDelegated = ${descriptor.isDelegated},\n" +
+//                            "isLateInit = ${descriptor.isLateInit},\n" +
+//                            "isActual = ${descriptor.isActual},\n" +
+//                            "isConst = ${descriptor.isConst},\n" +
+//                            "isExpect = ${descriptor.isExpect},\n" +
+//                            "isExternal = ${descriptor.isExternal}\n" +
+//                            "backingField = ${descriptor.backingField}\n" +
+//                            "delegateField = ${descriptor.delegateField}\n" +
+//                            ")", it.descriptor)
+//                }
+//                is ClassDescriptor -> {
+//                    Pair("${it.name}", descriptor)
+//                    Pair("${it.name}(\n" +
+//                            "text = ${it.text},\n" +
+//                            "isVar = ${descriptor.isCompanionObject},\n" +
+//                            "isData = ${descriptor.isData},\n" +
+//                            "isInner = ${descriptor.isInner},\n" +
+//                            "isInline = ${descriptor.isInline},\n" +
+//                            "isFinalOrEnum = ${descriptor.isFinalOrEnum},\n" +
+//                            "isExpect = ${descriptor.isExpect},\n" +
+//                            "isExternal = ${descriptor.isExternal}\n" +
+//                            ")", it.descriptor)
+//                }
+//                is EnumEntrySyntheticClassDescriptor -> {
+//                    Pair("${it.name}", descriptor)
+//                }
+//                else -> {
+//                    Pair("${it.name}", descriptor)
+//                }
+//            }
+//        }.also {
+//            println(it.joinToString("\n"))
+//        }
 
         return sortedDeclarations
     }

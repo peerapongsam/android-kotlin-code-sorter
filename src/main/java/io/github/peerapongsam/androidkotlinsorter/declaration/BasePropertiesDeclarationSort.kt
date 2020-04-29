@@ -243,7 +243,6 @@ open class BasePropertiesDeclarationSort(protected val declarations: MutableList
 
     protected open fun sortReadOnlyProperties(): List<KtDeclaration> {
         val properties = declarations.filter { isReadOnlyProperty(it) && !isBackingField(it) && !isBackingProperties(it) }
-        properties.map { it.name }.run { println("sortReadOnlyProperties = $this") }
         declarations.removeAll(properties)
         return properties
     }
