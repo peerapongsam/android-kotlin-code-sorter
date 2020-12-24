@@ -1,17 +1,10 @@
 package io.github.peerapongsam.androidkotlinsorter.action
 
-import com.intellij.notification.NotificationDisplayType
-import com.intellij.notification.NotificationGroup
-import com.intellij.notification.NotificationType
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.actionSystem.LangDataKeys
-import com.intellij.openapi.actionSystem.PlatformDataKeys
 import com.intellij.openapi.command.WriteCommandAction
-import com.intellij.psi.util.PsiTreeUtil
 import io.github.peerapongsam.androidkotlinsorter.sort.Sorter
-import org.jetbrains.kotlin.idea.refactoring.memberInfo.KtPsiClassWrapper
-import org.jetbrains.kotlin.preloading.ProfilingInstrumenterExample.e
 import org.jetbrains.kotlin.psi.KtClassOrObject
 
 open class SortAction : AnAction() {
@@ -20,16 +13,15 @@ open class SortAction : AnAction() {
         getKtClasses(event)?.let {
             startSort(it)
         }
-
-        val notificationGroup = NotificationGroup(
-                "Android Kotlin Code Sorter",
-                NotificationDisplayType.BALLOON,
-                true)
-        notificationGroup.createNotification("Sorted",
-                "Sorted",
-                NotificationType.INFORMATION,
-                null)
-                .notify(event.project)
+//        val notificationGroup = NotificationGroup(
+//                "Android Kotlin Code Sorter",
+//                NotificationDisplayType.BALLOON,
+//                false)
+//        notificationGroup.createNotification("Android Kotlin Code Sorter",
+//                "Sorted",
+//                NotificationType.INFORMATION,
+//                null)
+//                .notify(event.project)
     }
 
     private fun startSort(classes: List<KtClassOrObject>) {

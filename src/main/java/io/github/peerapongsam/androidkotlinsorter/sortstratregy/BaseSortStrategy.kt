@@ -110,6 +110,12 @@ abstract class BaseSortStrategy(private val declarations: List<KtDeclaration>) {
 //            println(it.joinToString("\n"))
 //        }
 
+        sortedDeclarations.map {
+            Triple(it.name, it.text, it.descriptor)
+        }.also {
+            println(it.joinToString("\n"))
+        }
+
         return sortedDeclarations
     }
 }

@@ -24,6 +24,9 @@ class ModifierPropertiesDeclarationSort(declarations: MutableList<KtDeclaration>
                 CONSTANTS -> {
                     properties.addAll(sortConstants())
                 }
+                COMPOSITE_DISPOSABLE -> {
+                    properties.addAll(sortCompositeDisposable())
+                }
                 OVERRIDING_PROPERTIES -> {
                     properties.addAll(sortOverridingReadOnlyProperties())
                     properties.addAll(sortOverridingMutableProperties())
